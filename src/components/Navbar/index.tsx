@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Navbar.module.scss';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,8 +7,16 @@ import TextField  from '@mui/material/TextField';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {  Badge } from '@mui/material';
 
+import { Store } from '../../redux';
+import { Cart } from '../../redux/reducers/cart';
+
+import styles from './Navbar.module.scss';
+
+
 export function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const cart = useSelector<Store, Cart>(state => state.cart);
+
   const open = Boolean(anchorEl);
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -50,7 +58,7 @@ export function Navbar() {
         />
       </div>
       <div className={styles.cart}> 
-          <Badge badgeContent={3} color='error'>
+          <Badge badgeContent={cart.data.length} color='error'>
             <ShoppingCartIcon />
           </Badge>
       </div>
