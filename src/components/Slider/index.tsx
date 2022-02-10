@@ -18,7 +18,7 @@ export function Slider({ images }: Slides) {
   const prevSlide = () => {
     setCurrent(current === 0 ? images.length - 1 : current - 1);
   }
-  if (images.length > 0) {
+  if (images.length > 1) {
     return (
       <div className={styles.imgWrapper}>
         <ArrowBackIosNewIcon
@@ -38,6 +38,20 @@ export function Slider({ images }: Slides) {
             </div>
           )
         })}
+      </div>
+    )
+  } else if (images.length === 1) {
+    return (
+      <div className={styles.imgWrapper}>
+      {images.map((i, index) => {
+        return (
+          <div>
+            {index === current && (
+              <img key={i.id} src={i.url} alt="" />
+            )}
+          </div>
+        )
+      })}
       </div>
     )
   } else {
