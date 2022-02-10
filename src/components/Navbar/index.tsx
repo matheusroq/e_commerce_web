@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styles from './styles.module.scss';
+import styles from './Navbar.module.scss';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import TextField  from '@mui/material/TextField';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Avatar, Badge } from '@mui/material';
-import { blue } from '@mui/material/colors';
+import {  Badge } from '@mui/material';
+
 export function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
