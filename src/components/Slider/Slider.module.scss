@@ -1,0 +1,27 @@
+.imgWrapper {
+  width: 350px;
+  height: 350px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .rightArrow {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    font-size: 2rem;
+  }
+  
+  .leftArrow {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    font-size: 2rem;
+  }
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
