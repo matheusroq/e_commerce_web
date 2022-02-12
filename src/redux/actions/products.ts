@@ -1,20 +1,20 @@
 import { api } from '../../utils/api'
 import { ThunkAction } from 'redux-thunk';
 import { AnyAction } from 'redux'
-import * as types from '../reduxTypes/products.types';
+import * as consts from '../consts/products.consts';
 
 export function getProducts(): ThunkAction<Promise<void>, {}, {}, AnyAction> {
   return async dispatch => {
-    dispatch({ type: types.PRODUCT_LIST_PENDING });
+    dispatch({ type: consts.PRODUCT_LIST_PENDING });
     try {
       const { data } = await api.get('/products');
       dispatch({
-        type: types.PRODUCT_LIST_FULFILLED,
+        type: consts.PRODUCT_LIST_FULFILLED,
         payload: data
       });
     } catch (error) {
       dispatch({
-        type: types.PRODUCT_LIST_REJECTED,
+        type: consts.PRODUCT_LIST_REJECTED,
         error
       })
     }

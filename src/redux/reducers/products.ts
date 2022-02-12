@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import * as types from '../reduxTypes/products.types';
+import * as consts from '../consts/products.consts';
 export type InitialState = {
   data: {
     product: {
@@ -29,18 +29,18 @@ const initialState: InitialState = {
 export function products(state = initialState, action: AnyAction) {
 
   switch (action.type) {
-    case types.PRODUCT_LIST_PENDING:
+    case consts.PRODUCT_LIST_PENDING:
       return {
         ...state,
         loading: true
       };
-    case types.PRODUCT_LIST_FULFILLED:
+    case consts.PRODUCT_LIST_FULFILLED:
       return {
         ...state,
         loading: false,
         data: action.payload
       }
-    case types.PRODUCT_LIST_REJECTED:
+    case consts.PRODUCT_LIST_REJECTED:
       return {
         ...state,
         loading: false,
