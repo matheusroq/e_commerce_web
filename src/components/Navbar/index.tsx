@@ -11,12 +11,21 @@ import { Store } from '../../redux';
 import { Cart } from '../../redux/reducers/cart';
 
 import styles from './Navbar.module.scss';
+import { Link } from 'react-router-dom';
 
 
 export function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const cart = useSelector<Store, Cart>(state => state.cart);
-
+  // const prod = localStorage.getItem('products');
+  // let amount;
+  // if (typeof prod === 'string') amount = JSON.parse(prod);
+  const badgeNumber = cart.data.reduce((ac, value) => {
+    if (value.quantity > 0) {
+      ac += 1;
+    }
+    return ac;
+  }, 0)
   const open = Boolean(anchorEl);
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,8 +67,10 @@ export function Navbar() {
         />
       </div>
       <div className={styles.cart}> 
-          <Badge badgeContent={cart.data.length} color='error'>
-            <ShoppingCartIcon />
+          <Badge badgeContent={badgeNumber} color='error'>
+            <Link to="/cart">
+              <ShoppingCartIcon />
+            </Link>
           </Badge>
       </div>
     </nav>

@@ -19,21 +19,31 @@ export function Products() {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+  
+  useEffect(() => {
+    if (cart) {
+      localStorage.setItem('products', JSON.stringify(cart));
+    }
+  }, [cart]);
 
-
-  const handlePurchase = ({product}: {
+  const handlePurchase = ({product, images }: {
     product: {
       id: string;
       name: string;
       price: number;
       category_id: number;
       description: string;      
-    }
+    },
+    images: {
+      id: string;
+      product_id: string;
+      filename: string;
+      original_filename: string;
+      url: string;
+    }[]
   }) => {
-    return (event: React.MouseEvent) => {
-      event.preventDefault();
-      dispatch(addProduct(product));
-      localStorage.setItem('products', JSON.stringify(cart));
+    return () => {
+      dispatch(addProduct({ product, images }));
     }
     
   }
