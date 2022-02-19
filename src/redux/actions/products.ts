@@ -21,3 +21,22 @@ export function getProducts(): ThunkAction<Promise<void>, {}, {}, AnyAction> {
 
   }
 }
+
+export function getProductsBySearchTerm(searchTerm: string): ThunkAction<Promise<void>, {}, {}, AnyAction> {
+  return async dispatch => {
+    dispatch({ type: consts.PRODUCT_LIST_SEARCH_PENDING });
+    try {
+      const { data } = await api.get(`/products?searchTerm=${searchTerm}`);
+      dispatch({
+        type: consts.PRODUCT_LIST_SEARCH_FULFILLED,
+        payload: data
+      });
+
+    } catch (error) {
+      dispatch({
+        type: consts.PRODUCT_LIST_SEARCH_REJECTED,
+        error
+      });
+    }
+  }
+}
