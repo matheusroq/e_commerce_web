@@ -24,7 +24,6 @@ const initialState: Cart = {
   data: [],
 }
 export function cart(state = initialState, action: AnyAction) {
-  console.log(action)
   switch (action.type) {
     case consts.CART_ADD: {
       return {
