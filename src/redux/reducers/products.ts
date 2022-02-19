@@ -27,7 +27,6 @@ const initialState: InitialState = {
   error: null,
 };
 export function products(state = initialState, action: AnyAction) {
-
   switch (action.type) {
     case consts.PRODUCT_LIST_PENDING:
       return {
@@ -44,9 +43,25 @@ export function products(state = initialState, action: AnyAction) {
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.error
       }
-
+    case consts.PRODUCT_LIST_SEARCH_PENDING:
+      return {
+        ...state,
+        loading: true,
+      }
+    case consts.PRODUCT_LIST_SEARCH_FULFILLED:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
+      }
+    case consts.PRODUCT_LIST_SEARCH_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      }
     default:
       return state;
   }
