@@ -12,6 +12,7 @@ import { Cart } from '../../redux/reducers/cart';
 
 import styles from './Navbar.module.scss';
 import { Link } from 'react-router-dom';
+import { SearchInput } from '../SearchInput';
 
 
 export function Navbar() {
@@ -61,10 +62,11 @@ export function Navbar() {
         </Menu>
       </div>
       <div className={styles.search}>
-        <TextField
+       {/*  <TextField
           style={{ width: '100%'}}
           size='small'   
-        />
+        /> */}
+        <SearchInput />
       </div>
       <div className={styles.cart}> 
           <Badge badgeContent={badgeNumber} color='error'>
